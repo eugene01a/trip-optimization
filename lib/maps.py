@@ -5,7 +5,6 @@ import config
 
 auth = config.load('auth')
 
-
 def distance(start, end, units='imperial'):
     key = auth['googlemaps']['distance']
     print("googlemaps distance api key: {}".format(key))
@@ -18,10 +17,8 @@ def miles_to_meters(miles):
     conversion_factor = 1609.34
     return round(miles * conversion_factor,2)
 
-
 def meters_to_miles(meters):
     return round(meters / 1609.344,2)
-
 
 # find the total distance traveled on a given route, default units is meters
 def total_distance(directions):

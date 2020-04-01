@@ -1,5 +1,5 @@
 googlemaps:
-  distance:
-  places:
-  directions:
-  geocoding: 
+  distance: DISTANCE_KEY
+  places: PLACES_KEY
+  directions: DRECTIONS_KEY
+  geocoding: GEOCODING_KEY

@@ -1,6 +1,7 @@
 from lib.maps import *
-start = '8356 Garibaldi Ave. 91775'
-end = '242 Keller St. 91755'
+
+start = '1600 Amphitheatre Parkway Mountain View, CA 94043'
+end = '1 Apple Park Way Cupertino, California, United States'
 query = {
     'name': 'supermarket'
 }
