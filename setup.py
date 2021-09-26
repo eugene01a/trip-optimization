@@ -1,9 +1,12 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
-    name='route-search-app',
-    packages=['kivy', 'plyer', 'googlemaps'],
+    name='TripOptimization',
+    version='',
+    packages=['src'],
+    url='',
+    license='',
     author='eichinose',
-    author_email='eichinose1@gmail.com',
-    description='Searchable Route App'
+    author_email='',
+    description=''
 )
