@@ -1,6 +1,6 @@
 import yaml
 import os
-PROJECT_ROOT = os.environ.get('MY_HOME', "/Users/eichinose/PycharmProjects/TripOptimization")
+PROJECT_ROOT = os.environ.get('MY_HOME', "/Users/eichinose/src/trip-optimization")
 CONFIG_HOME = PROJECT_ROOT+"/etc"
 
 def load(filename, mode = 'r'):

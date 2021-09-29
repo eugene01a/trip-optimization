@@ -6,17 +6,14 @@ from datetime import datetime
 from src import config
 
 credentials = config.load('auth')
-secret_key=credentials['googlemaps']['directions']
+secret_key=credentials['googlemaps']
 
 gmaps = googlemaps.Client(key=secret_key)
 
 now = datetime.now()
 
 destinations = [
-    "Sunset Recycling Center Montebello",
-    "Daiso",
-    "99 Ranch Market",
-    "Costco Monterey Park"]
+    "Sunset Recycling Center Montebello"]
 
 directions_result = gmaps.distance_matrix(
     "242 Keller St. Monterey Park, CA 91755",

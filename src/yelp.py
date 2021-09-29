@@ -1,7 +1,8 @@
 from __future__ import print_function
 from urllib.parse import quote
 import requests
-
+from datetime import datetime
+from collections import defaultdict
 from src import config
 
 credentials = config.load('auth')
@@ -13,10 +14,9 @@ SEARCH_PATH = '/v3/businesses/search'
 BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 
 # Defaults for our simple example.
-SEARCH_LIMIT = 3
-
-
-def request(host, path, api_key, url_params=None):
+cached_hours={}
+cached_ids={}
+def request(host, path, url_params=None):
     """Given your API_KEY, send a GET request to the API.
     Args:
         host (str): The domain host of the API.
@@ -31,7 +31,7 @@ def request(host, path, api_key, url_params=None):
     url_params = url_params or {}
     url = '{0}{1}'.format(host, quote(path.encode('utf8')))
     headers = {
-        'Authorization': 'Bearer %s' % api_key,
+        'Authorization': 'Bearer %s' % API_KEY,
     }
 
     print(u'Querying {0} ...'.format(url))
@@ -41,7 +41,7 @@ def request(host, path, api_key, url_params=None):
     return response.json()
 
 
-def search(api_key, term, location):
+def search(term, location, search_limit):
     """Query the Search API by a search term and location.
     Args:
         term (str): The search term passed to the API.
@@ -53,12 +53,11 @@ def search(api_key, term, location):
     url_params = {
         'term': term.replace(' ', '+'),
         'location': location.replace(' ', '+'),
-        'limit': SEARCH_LIMIT
+        'limit': search_limit
     }
-    return request(API_HOST, SEARCH_PATH, api_key, url_params=url_params)
+    return request(API_HOST, SEARCH_PATH, url_params=url_params)
 
-
-def get_business(api_key, business_id):
+def get_business(business_id):
     """Query the Business API by a business ID.
     Args:
         business_id (str): The ID of the business to query.
@@ -67,6 +66,31 @@ def get_business(api_key, business_id):
     """
     business_path = BUSINESS_PATH + business_id
 
-    return request(API_HOST, business_path, api_key)
+    return request(API_HOST, business_path)
+    
+def normalize_hours(response):
+    '''
+    Response structure: 
+    https://www.yelp.com/developers/documentation/v3/business
+    '''
+    hours = response['hours'][0]['open']
+    normalized_hours = defaultdict(list)
+    for hour in hours:
+        day = hour['day']
+        normalized_hours[day].append(
+            (hour['start'],hour['end']))
+    return normalized_hours
+
+def is_open(normalized_hours, arrival_dt):
+    day_str = arrival_dt.strftime("%w")
+    arrival_time = arrival_dt.strftime("%H%M")
+    for (start, end) in normalized_hours[int(day_str)]:
+        if start < arrival_time < end:
+          return True
+    return False
+
+        
 
 
+
+          
