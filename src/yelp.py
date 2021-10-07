@@ -70,8 +70,12 @@ def get_business(business_id):
     
 def normalize_hours(response):
     '''
-    Response structure: 
+    Original Response structure:
     https://www.yelp.com/developers/documentation/v3/business
+
+    return dict where keys is integer enum of weekday,
+    values is list of tuples represented open,close times.
+    defaults to empty list if no key exists.
     '''
     hours = response['hours'][0]['open']
     normalized_hours = defaultdict(list)

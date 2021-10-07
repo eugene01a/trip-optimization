@@ -10,8 +10,10 @@ secret_key=credentials['googlemaps']
 
 gmaps = googlemaps.Client(key=secret_key)
 
-def travel_time(origin, dest, departure_time):
+def dist_matrix(origin, dest, departure_time):
     response = gmaps.distance_matrix(origin, dest, departure_time = departure_time)
+    return response
+
 
 
 

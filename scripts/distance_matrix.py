@@ -1,23 +1,15 @@
 from pprint import pprint
 
-import googlemaps
+from src.maps import travel_time
 from datetime import datetime
+from datetime import datetime, timedelta
 
 from src import config
 
-credentials = config.load('auth')
-secret_key=credentials['googlemaps']
+origin="242 Keller St. Monterey Park, CA 91755"
+destination = "Sunset Recycling Center Montebello"
 
-gmaps = googlemaps.Client(key=secret_key)
+departure_time = datetime.now() + timedelta(hours=3)
 
-now = datetime.now()
-
-destinations = [
-    "Sunset Recycling Center Montebello"]
-
-directions_result = gmaps.distance_matrix(
-    "242 Keller St. Monterey Park, CA 91755",
-    destinations,
-    departure_time=now)
-
-pprint(directions_result)
+response = travel_time(origin, destination, departure_time)
+pprint(response)

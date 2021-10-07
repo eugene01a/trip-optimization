@@ -1,3 +1,12 @@
-googlemaps
+googlemaps~=4.5.3
 pyyaml
-requests
+requests~=2.26.0
+SQLAlchemy
+psycopg2
+flask_sqlalchemy
+flask_cors
+flask_migrate
+flask_bcrypt
+
+Flask~=2.0.1
+setuptools~=58.1.0

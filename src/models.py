@@ -1,18 +1,14 @@
-class Place:
-    def __init__(self, name, address):
+from src import db
+
+
+class Place(db.Model):
+    def __init__(self, name, location, hours):
         self.name = name
-        self.address = address
-
-class Stop(Place):
-    def __init__(self, name, address, hours):
+        self.location = location
         self.hours = hours
-        Place.__init__(self, name, address)
 
-    def routeFrom(self, location):
-        pass
-
-    def isOpen(self, arrival_time):
-        pass
-
-
+class Errand(db.Model):
+    def __init__(self, name, place, duration):
+        self.name = name
+        self.place = place
 
