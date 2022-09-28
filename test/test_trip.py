@@ -73,9 +73,9 @@ errands = [
         "duration": timedelta(minutes=30)
     },
     {
-        "description": "Return leaf blower",
+        "description": "Return amazon package",
         "location": {
-            "name": "Harbor Freight",
+            "name": "Kohls Montebello",
             "address": None
         },
         "duration": timedelta(minutes=10)
