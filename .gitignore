@@ -1,3 +1,6 @@
-auth.yml
+.egg-info
 .DS_Store
 .idea
+venv
+**/config.ini
+config.ini

@@ -1,3 +1,4 @@
+configparser
 googlemaps~=4.5.3
 pyyaml
 requests
@@ -8,4 +9,5 @@ flask_cors
 flask_migrate
 flask_bcrypt
 Flask
+oauth2client
 setuptools
