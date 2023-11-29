@@ -1,5 +1,5 @@
 # trip-optimization
-App for searching for places along a route
+A route planning application for running errands.
 
 Open adminer portal
 http://localhost:8080/
