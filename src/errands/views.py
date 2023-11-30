@@ -31,5 +31,10 @@ def errands_create():
         errand = Errand(form.name.data, form.duration_mins.data, place.id, form.notes.data)
         db.session.add(errand)
         db.session.commit()
+    return render_template('new_errand.html', form=form)
 
-    return render_template('errand.html', form=form)
+@bp.route('/')
+def index():
+    errands = Errand.query
+    return render_template('errands.html', title='Errands',
+                           errands=errands)

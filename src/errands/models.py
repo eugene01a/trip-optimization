@@ -17,3 +17,4 @@ class Errand(db.Model):
         self.place_id = place_id
         self.notes = notes
         self.completed = False
+

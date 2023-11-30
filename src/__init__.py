@@ -1,11 +1,11 @@
 import os
 
 import click
+from dotenv import dotenv_values
 from flask import Flask
 from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
-from dotenv import dotenv_values
 
 __version__ = (1, 1, 0, "dev")
 
@@ -15,6 +15,7 @@ class Base(DeclarativeBase):
 
 
 db = SQLAlchemy(model_class=Base)
+
 
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
@@ -44,9 +45,10 @@ def create_app(test_config=None):
     app.cli.add_command(init_db_command)
 
     # apply the blueprints to the app
-    from src import errands
-
+    from src import errands, trips, places
     app.register_blueprint(errands.bp)
+    app.register_blueprint(trips.bp)
+    app.register_blueprint(places.bp)
 
     # make "index" point at "/", which is handled by "blog.index"
     app.add_url_rule("/", endpoint="")
