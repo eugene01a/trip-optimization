@@ -11,3 +11,4 @@ oauth2client
 setuptools
 psycopg[binary]
 python-dotenv
+flask_cors

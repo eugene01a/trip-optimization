@@ -6,6 +6,7 @@ from flask import Flask
 from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
+from flask_cors import CORS
 
 __version__ = (1, 1, 0, "dev")
 
@@ -20,6 +21,8 @@ db = SQLAlchemy(model_class=Base)
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__, instance_relative_config=True)
+    app.config['CORS_HEADERS'] = 'Content-Type'
+    CORS(app)
 
     config = dotenv_values(".env")
     username = config.get("DB_USERNAME")
