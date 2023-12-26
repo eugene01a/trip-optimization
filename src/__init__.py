@@ -7,6 +7,7 @@ from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
+from src.places.models import Place, Location
 
 __version__ = (1, 1, 0, "dev")
 
@@ -62,6 +63,19 @@ def create_app(test_config=None):
 def init_db():
     db.drop_all()
     db.create_all()
+    add_fav_places()
+
+
+def add_fav_places():
+    home = Place("Home")
+    db.session.add(home)
+    home_loc = Location(home.id, "ChIJL2ax_O_PwoARkSiLOxz_TIo", 34.0460711, -118.1256168,
+                        "242 Keller St. Monterey Park, CA 91755 USA")
+
+    db.session.add(home_loc)
+    db.session.flush()
+    db.session.commit()
+
 
 
 @click.command("init-db")

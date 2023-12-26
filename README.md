@@ -1,8 +1,11 @@
 # trip-optimization
+
 A route planning application for running errands.
 
 ### Setup
+
 All steps below are done from the root of the project.
+
 Create your own _.env_ file:
 ```ini
 # .env
@@ -23,6 +26,9 @@ Create the docker containers for postgres and adminer (DB admin tool):
 docker-compose up -d
 ```
 
+Verify by logging into the adminer portal at
+http://localhost:8080/
+
 Add this environment variable to your bashrc or zshrc file:
 ```commandline
 export FLASK_APP=src/__init__.py
@@ -33,11 +39,7 @@ Initialize the database schema:
 flask init-db
 ```
 
-Verify by logging into the adminer portal at
-http://localhost:8080/
-
 Finally, run the flask app:
 ```commandline
 flask run
 ```
-
